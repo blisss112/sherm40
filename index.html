@@ -352,6 +352,70 @@ body {
 
 /* departure */
 
+/* ═══════════ MOON PHASES ═══════════ */
+.moon-section {
+  background: var(--ocean-dark);
+  padding: 48px 40px;
+  text-align: center;
+}
+.moon-eyebrow {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 0.52rem;
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  margin-bottom: 32px;
+}
+.moon-row {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0;
+  flex-wrap: nowrap;
+  max-width: 720px;
+  margin: 0 auto;
+}
+.moon-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  flex: 1;
+}
+.moon-emoji {
+  font-size: 2rem;
+  line-height: 1;
+  display: block;
+}
+.moon-day {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 0.5rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-top: 2px;
+}
+.moon-date {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-style: italic;
+  font-size: 0.75rem;
+  color: var(--gold-light);
+  line-height: 1;
+}
+.moon-label {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 200;
+  font-size: 0.4rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.38);
+  text-align: center;
+  line-height: 1.4;
+}
+
 /* ═══════════ FOOTER ═══════════ */
 .footer {
   background: var(--ocean-dark);
@@ -683,7 +747,59 @@ body {
 
 </div>
 
-<!-- FOOTER -->
+<!-- MOON PHASES -->
+<div class="moon-section">
+  <div id="moon-row" class="moon-row"></div>
+</div>
+
+<script>
+(function(){
+  var data=[
+    {day:'Thu',date:'Jul 9', pct:0.35,waning:true},
+    {day:'Fri',date:'Jul 10',pct:0.25,waning:true},
+    {day:'Sat',date:'Jul 11',pct:0.16,waning:true},
+    {day:'Sun',date:'Jul 12',pct:0.09,waning:true},
+    {day:'Mon',date:'Jul 13',pct:0.03,waning:true},
+    {day:'Tue',date:'Jul 14',pct:0.00,waning:false},
+    {day:'Wed',date:'Jul 15',pct:0.02,waning:false},
+    {day:'Thu',date:'Jul 16',pct:0.07,waning:false},
+  ];
+  var R=26,S=R*2+6,LIT='#c8b49a',DARK='#1b2d44';
+  var wrap=document.getElementById('moon-row');
+  function drawMoon(ctx,cx,cy,pct,waning){
+    ctx.beginPath();ctx.arc(cx,cy,R,0,Math.PI*2);ctx.fillStyle=DARK;ctx.fill();
+    if(pct<0.005)return;
+    var rx=R*Math.abs(1-2*pct);
+    ctx.save();
+    ctx.beginPath();ctx.arc(cx,cy,R,0,Math.PI*2);ctx.clip();
+    if(waning){
+      ctx.beginPath();ctx.arc(cx,cy,R,Math.PI/2,3*Math.PI/2);ctx.closePath();ctx.fillStyle=LIT;ctx.fill();
+      ctx.beginPath();ctx.ellipse(cx,cy,rx,R,0,0,Math.PI*2);ctx.fillStyle=pct<0.5?DARK:LIT;ctx.fill();
+    } else {
+      ctx.beginPath();ctx.arc(cx,cy,R,-Math.PI/2,Math.PI/2);ctx.closePath();ctx.fillStyle=LIT;ctx.fill();
+      ctx.beginPath();ctx.ellipse(cx,cy,rx,R,0,0,Math.PI*2);ctx.fillStyle=pct<0.5?DARK:LIT;ctx.fill();
+    }
+    ctx.restore();
+  }
+  data.forEach(function(m){
+    var col=document.createElement('div');
+    col.style.cssText='flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;';
+    var c=document.createElement('canvas');
+    c.width=S;c.height=S;c.style.cssText='width:'+S+'px;height:'+S+'px;';
+    var ctx=c.getContext('2d');
+    drawMoon(ctx,S/2,S/2,m.pct,m.waning);
+    ctx.beginPath();ctx.arc(S/2,S/2,R,0,Math.PI*2);ctx.strokeStyle='#2a4a5a';ctx.lineWidth=0.8;ctx.stroke();
+    var dayL=document.createElement('span');
+    dayL.textContent=m.day;
+    dayL.style.cssText='font-family:\'Montserrat\',sans-serif;font-size:0.5rem;font-weight:500;color:#ccc;letter-spacing:0.15em;text-transform:uppercase;';
+    var dateL=document.createElement('span');
+    dateL.textContent=m.date;
+    dateL.style.cssText='font-family:\'Cormorant Garamond\',serif;font-size:0.75rem;font-style:italic;color:#b08d57;';
+    col.appendChild(c);col.appendChild(dayL);col.appendChild(dateL);
+    wrap.appendChild(col);
+  });
+})();
+</script>
 <div class="footer">
   <p class="footer-title">Costa Smeralda, Sardinia &nbsp;·&nbsp; July 2026</p>
   <div class="footer-rule"></div>
