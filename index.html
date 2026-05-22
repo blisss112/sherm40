@@ -277,12 +277,15 @@ body {
 .suggestions-list li {
   font-family: 'Montserrat', sans-serif;
   font-weight: 300; font-size: .62rem;
-  color: var(--gray); line-height: 1.5;
-  display: flex; gap: 10px; align-items: baseline;
+  color: var(--gray); line-height: 1.6;
+  display: block;
+  padding-left: 12px;
+  position: relative;
 }
 .suggestions-list li::before {
   content: '◆'; font-size: .33rem;
-  color: var(--rose); flex-shrink: 0; position: relative; top: -1px;
+  color: var(--rose); position: absolute;
+  left: 0; top: 3px;
 }
 .sugg-name { font-weight: 500; color: var(--ink); }
 
@@ -510,11 +513,10 @@ body {
             <div class="suggestions">
               <p class="suggestions-label">Ideas &amp; Suggestions</p>
               <ul class="suggestions-list">
-                <li><span class="sugg-name">Capriccioli Beach</span> — secluded cove, easy access, snorkeling</li>
-                <li><span class="sugg-name">Porto Cervo</span> — stroll the promenade, shopping, aperitivo</li>
-                <li><span class="sugg-name">San Pantaleo</span> — hilltop village, artisan market, granite rock formations</li>
-                <li><span class="sugg-name">Liscia Ruja</span> — long golden-sand beach, calm shallow water, great for a slower day</li>
-                <li><span class="sugg-name">Capo Testa</span> — granite cliffs, cool landscapes</li>
+                <li><span class="sugg-name">Capriccioli Beach</span> —  secluded cove, easy access, snorkeling</li>
+                <li><span class="sugg-name">Porto Cervo</span> —  stroll the promenade, shopping, aperitivo</li>
+                <li><span class="sugg-name">Liscia Ruja</span> —  long golden-sand beach, calm shallow water, great for a slower day</li>
+                <li><span class="sugg-name">Capo Testa</span> —  granite cliffs, cool landscapes</li>
                 <li><span class="sugg-name">Anything your heart desires...</span></li>
               </ul>
             </div>
@@ -581,16 +583,7 @@ body {
           <span class="event-dot"></span>
           <div class="event-body">
             <p class="event-name">A free day designed to invite spontaneity</p>
-          </div>
-        </div>
-        <div class="event">
-          <span class="event-time">8:00 pm</span>
-          <span class="event-dot"></span>
-          <div class="event-body">
-            <p class="event-name">Dinner · Pedri Garden <a class="map-pin" href="https://maps.google.com/?q=Pedri+Garden+Porto+Cervo+Sardinia" target="_blank" rel="noopener" title="View on Google Maps"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></a></p>
-            <ul class="logistics">
-              <li>13 min drive from Cascioni Eco Retreat</li>
-            </ul>
+            <p class="event-detail">Shopping in Porto Cervo</p>
           </div>
         </div>
       </div>
