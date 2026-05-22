@@ -318,9 +318,8 @@ body {
 /* ═══════════ MOON PHASES ═══════════ */
 .moon-section {
   background: #2e1f10;
-  padding: 36px 40px 28px;
+  padding: 36px 16px 28px;
   text-align: center;
-  overflow: hidden;
 }
 .moon-eyebrow {
   font-family: 'Montserrat', sans-serif;
@@ -333,7 +332,8 @@ body {
   align-items: flex-start; gap: 0; flex-wrap: nowrap;
   width: 100%;
   max-width: 720px; margin: 0 auto;
-  overflow: hidden;
+  box-sizing: border-box;
+  padding: 0 8px;
 }
 .moon-item {
   display: flex; flex-direction: column;
@@ -706,7 +706,7 @@ body {
     var col=document.createElement('div');
     col.style.cssText='flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;';
     var c=document.createElement('canvas');
-    c.width=S;c.height=S;c.style.cssText='width:min('+S+'px, 11vw);height:min('+S+'px, 11vw);';
+    c.width=S;c.height=S;c.style.cssText='width:min('+S+'px, 10.5vw);height:min('+S+'px, 10.5vw);max-width:'+S+'px;';
     var ctx=c.getContext('2d');
     drawMoon(ctx,S/2,S/2,m.pct,m.waning);
     ctx.beginPath();ctx.arc(S/2,S/2,R,0,Math.PI*2);ctx.strokeStyle='rgba(90,90,90,0.3)';ctx.lineWidth=0.8;ctx.stroke();
