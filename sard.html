@@ -413,7 +413,7 @@ body {
     </div>
     <div style="display:inline-flex;flex-direction:column;align-items:stretch;">
       <div class="hero-dates">
-        <span class="hero-date-sep" style="font-size:clamp(1.4rem,3.5vw,2.8rem);font-weight:300;margin-left:0;">July 9 – 12, 2026</span>
+        <span class="hero-date-sep" style="font-size:clamp(1.4rem,3.5vw,2.8rem);font-weight:300;margin-left:0;">July 9 – 13, 2026</span>
       </div>
       <span class="hero-date-label">Costa Smeralda</span>
     </div>
@@ -568,6 +568,27 @@ body {
     </div>
   </div>
 
+  <!-- JULY 13 -->
+  <div class="day-block departure">
+    <div class="day-date">
+      <span class="day-num">13</span>
+      <span class="day-weekday">Monday</span>
+      <span class="day-month">July</span>
+    </div>
+    <div class="day-content">
+      <p class="day-label">Departure Day</p>
+      <div class="events">
+        <div class="event">
+          <span class="event-time"></span>
+          <span class="event-dot"></span>
+          <div class="event-body">
+            <p class="event-name">Arrivederci! Ti Amo!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <!-- MOON PHASES -->
@@ -582,6 +603,7 @@ body {
     {day:'Fri',date:'Jul 10',pct:0.25,waning:true},
     {day:'Sat',date:'Jul 11',pct:0.16,waning:true},
     {day:'Sun',date:'Jul 12',pct:0.09,waning:true},
+    {day:'Mon',date:'Jul 13',pct:0.03,waning:true},
   ];
   var R=26,S=R*2+6,LIT='#e8c4bf',DARK='#2e1f10';
   var wrap=document.getElementById('moon-row');
@@ -622,5 +644,20 @@ body {
 <div class="footer">
 </div>
 
+<script>
+(function(){
+  var heroContent = document.querySelector('.hero-content');
+  var hero = document.querySelector('.hero');
+  function onScroll(){
+    var heroH = hero.offsetHeight;
+    var scrolled = window.scrollY;
+    var opacity = 1 - (scrolled / (heroH * 0.4));
+    opacity = Math.max(0, Math.min(1, opacity));
+    heroContent.style.opacity = opacity;
+    heroContent.style.transform = 'translateY(' + (scrolled * 0.15) + 'px)';
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+})();
+</script>
 </body>
 </html>

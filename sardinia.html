@@ -724,5 +724,21 @@ body {
 <div class="footer">
 </div>
 
+<script>
+(function(){
+  var heroContent = document.querySelector('.hero-content');
+  var hero = document.querySelector('.hero');
+  function onScroll(){
+    var heroH = hero.offsetHeight;
+    var scrolled = window.scrollY;
+    // Fade out over the first 40% of hero height
+    var opacity = 1 - (scrolled / (heroH * 0.4));
+    opacity = Math.max(0, Math.min(1, opacity));
+    heroContent.style.opacity = opacity;
+    heroContent.style.transform = 'translateY(' + (scrolled * 0.15) + 'px)';
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+})();
+</script>
 </body>
 </html>
